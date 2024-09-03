@@ -1,13 +1,13 @@
 FROM node:18
 
-WORKDIR /home/app
+WORKDIR /usr/src/app
 
 COPY . .
 
 
-EXPOSE 2402
+EXPOSE 3000
 
 RUN npm install
 
 
-CMD ["node", "server.js"]
+CMD ["node", "app.js"]
