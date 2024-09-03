@@ -1,17 +1,28 @@
-version: '3.8'  
+version: '3.8'
 
 services:
-  mysql:
-    image: mysql:latest  
+  express:
+    build: .
     ports:
-      - "3307:3306"  
+      - "3000:3000"
+    depends_on:
+      - mysql_host
+    environment:
+      - MYSQL_HOST=mysql_host
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=2402
+      - MYSQL_DATABASE=Usuarios
+  
+  mysql_host:
+    image: mysql:latest
+    container_name: mysql_host
+    ports:
+      - "3307:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=2402
       - MYSQL_DATABASE=Usuarios 
     volumes:
-      - mysql_data:/var/lib/mysql  
+      - mysql_data:/var/lib/mysql
 
 volumes:
-  mysql_data:  
-
-
+  mysql_data:
